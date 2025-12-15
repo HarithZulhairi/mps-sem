@@ -1,0 +1,170 @@
+* {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.searchText {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 1rem;
+}
+
+.search-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #F9F9F9;
+    width: 100%;
+    height: 200px;
+    margin-top: 1rem;
+    border: 1px solid gray;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 2px solid lightgrey; /* Default non-active state */
+}
+
+.tab.active {
+    font-weight: bold;
+    border-bottom: 2px solid black; /* Active state */
+}
+
+.tab-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: black;
+    width: 50px; /* Initial width */
+    transition: all 0.3s ease;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box input[type="search"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-box input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.search-box i {
+    padding-right: 20px;
+}
+
+.search-results {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0px 50px;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.search-results .result {
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.view-publication {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.view-publication:hover {
+    background-color: #007B9A;
+}
+
+.downloadable {
+    text-align: center;
+    color: #007478;
+    background-color: #c5e8e5;
+    padding: 0px 10px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+
+.article {
+    text-align: center;
+    color: #787800;
+    background-color: #e8e7c5;
+    padding: 0px 10px;
+}
+
+.journal {
+    text-align: center;
+    color: #040078;
+    background-color: #c5c6e8;
+    padding: 0px 10px;
+}
+
+.book {
+    text-align: center;
+    color: #78006c;
+    background-color: #e8c5e6;
+    padding: 0px 10px;
+}
+
+.conference {
+    text-align: center;
+    color: #780000;
+    background-color: #e8c5c5;
+    padding: 0px 10px;
+}
+
+
+.doi-date {
+    display: flex;
+    flex-direction: row;
+}
+
+.date-publication , .DOI-publication {
+    padding-left: 20px;
+    color: rgb(132, 132, 132);
+}
+
+.expert-domain {
+    font-weight: bold;
+    margin-left: 20px;
+}

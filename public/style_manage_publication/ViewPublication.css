@@ -1,0 +1,226 @@
+* {
+  font-family: 'Roboto', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  max-width: 1000px;
+  border: 1px solid grey;
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin: auto;
+  margin-top: 3rem;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.item1 {
+  grid-column: span 2;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.item2 {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item3 {
+  grid-column: span 2;
+}
+
+.item4 {
+  grid-column: span 2;
+}
+
+.info-left, .info-right {
+  width: 48%;
+}
+
+.publication-title {
+  font-size: 34px;
+  margin-bottom: -5px;
+  color: #333;
+}
+
+.publication-date {
+  display: inline-block;
+  font-size: 20px;
+  color: green;
+  font-weight: 500;
+}
+
+.publication-type {
+  display: inline;
+}
+
+.article {
+  text-align: center;
+  color: #787800;
+  background-color: #e8e7c5;
+  padding: 0px 10px;
+}
+
+.journal {
+  text-align: center;
+  color: #040078;
+  background-color: #c5c6e8;
+  padding: 0px 10px;
+}
+
+.book {
+  text-align: center;
+  color: #78006c;
+  background-color: #e8c5e6;
+  padding: 0px 10px;
+}
+
+.conference {
+  text-align: center;
+  color: #780000;
+  background-color: #e8c5c5;
+  padding: 0px 10px;
+}
+
+
+.publication-authors {
+  margin-top: 36px;
+  font-size: 18px;
+  color: #333;
+}
+
+.publication-DOI, .publication-peer-review, .publication-journal-name, .publication-volume, .publication-issue, .publication-page, .publication-conference-name, .publication-conf-volume, .publication-conf-issue, .publication-existing-doi, .publication-refers, .publication-conf-location {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.publication-abstract-title {
+  font-size: 20px;
+  color: #333;
+}
+
+.publication-abstract {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.download-publication {
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.download-publication i {
+  margin-right: 8px;
+}
+
+.download-publication:hover {
+  background-color: #007B9A;
+}
+
+.a-download-publication {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.cite-publication {
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: white;
+  color: #008CBA;
+  border-radius: 30px;
+  border-color: #008CBA;
+  cursor: pointer;
+  border: 2px solid;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.cite-publication:hover {
+  background-color: #c1dae0;
+}
+
+.a-cite-publication {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* Citation Popup */
+.citation-popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.citation-popup-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.ieee-citation-box {
+  margin-bottom: 55px;
+}
+
+.ieee-citation-box button, .apa-citation-box button{
+  cursor: pointer;
+  padding: 5px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.ieee-citation-box button:hover, .apa-citation-box button:hover{
+  background-color: #aaa;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  margin-top: 10px;
+}

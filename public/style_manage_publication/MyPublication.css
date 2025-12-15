@@ -1,0 +1,93 @@
+section {
+    position: relative;
+    min-height: 100px; /* Set a minimum height */
+}
+
+.titleText {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 1rem;
+}
+
+.success-message {
+    text-align: center;
+    color: green;
+    padding-bottom: 20px;
+}
+
+.container {
+    border: 1px solid grey;
+    background-color: #F9F9F9;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+th, td{
+    text-align: center;
+    height: 40px;
+}
+
+.mypub-th {
+    padding-bottom: 12px;
+    font-size: 17px;
+}
+
+
+.action-button {
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100px;
+    margin: 0px 7px;
+    padding: 3px 0px;
+    color: white;
+    border-radius: 5px;
+}
+
+.action-button:hover {
+    background-color: grey;
+}
+
+.view {
+    background-color: #04AA6D;
+}
+
+.edit {
+    background-color: #007bff; 
+}
+
+.delete {
+    background-color: #c70000;
+}
+
+.view:hover {
+    background-color: #218c65;
+}
+
+.edit:hover {
+    background-color: #0056b3;
+}
+
+.delete:hover {
+    background-color: #9f0000;
+}
+
+/* Align the buttons in a row */
+.action-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

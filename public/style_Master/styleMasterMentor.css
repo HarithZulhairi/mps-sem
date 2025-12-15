@@ -1,0 +1,382 @@
+/* BODY */
+body {
+    /* display: flex;
+    flex-direction: column; */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    /* flex-grow: 1; */
+    min-height: calc(100vh - 196.54px);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #D5C437;
+
+}
+
+.side-navigation {
+    position: absolute;
+
+    /* display: flex; */
+    /* display: hidden; */
+    flex-direction: column;
+    z-index: 1000;
+    top: 5rem;
+    gap: 0.1rem;
+}
+
+
+
+
+
+
+
+.side-dropbtn {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 2rem;
+    font-size: 45px;
+
+    color: white;
+ 
+
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+.side-dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.side-dropdown-content {
+    position: absolute;
+    min-width: 220px;
+    z-index: 1;
+    margin-bottom: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
+}
+
+.side-dropdown-content.show-side {
+    transform: translateX(0);
+}
+  
+.side-dropdown-content > a, .side-dropdown-content > div > a  {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f3f3;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 14px;
+    width: 10rem;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 0.1rem;
+    gap: 0px;
+    flex-direction: column;
+    box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+ 
+.side-dropdown a:hover {background-color: #ddd;}
+
+
+/* Add this CSS to show the dropright menu when hovering */
+.drop-wrapper:hover .drop-menu {
+    display: block;
+}
+
+/* Additional styling for the dropright menu */
+.drop-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 3px 0 #ccc;
+}
+
+
+
+.drop-menu a {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f3f3;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 14px;
+    width: 10rem;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 0.1rem;
+    gap: 0px;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.droprightPlatinum{
+    left: 71.9%;
+    top: 20%;
+    margin-left: 0.125rem;
+}
+
+.droprightPublication{
+    left: 72%;
+    bottom: 45%;
+    margin-left: 0.125rem;
+}
+
+.droprightExpert{
+    left: 71.9%;
+    top: 64%;
+    margin-left: 0.125rem;
+}
+
+.dropleftResearch{
+    right: 100%;
+    top: 0%;
+    margin-right: 0.125rem;
+}
+
+
+
+
+
+.profile-dropbtn {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 2rem;
+    font-size: 45px;
+
+    color: white;
+ 
+
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.profile-dropdown-content {
+    position: absolute;
+    min-width: 250px;
+    min-height: 260px;
+    overflow: auto;
+    z-index: 1;
+    margin-bottom: 2rem;
+    right: -250px; /* Initially hide it off the screen */
+    transition: right 0.3s ease; /* Add a transition for smooth sliding */
+}
+
+.show-profile {
+    right: 0; /* Slide it in when active */
+}
+
+
+  
+.profile-dropdown-content > a {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f3f3;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 18px;
+    width: 12rem;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 0.1rem;
+    gap: 0px;
+    flex-direction: column;
+    box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.profile-dropdown a:hover {background-color: #ddd;}
+
+
+
+.show-side {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Text part */
+
+.system-name {
+    color: white;
+    font-family: 'Atma';
+    font-size: 40px;
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+    padding-left: 20px;
+}
+
+.sidebar, .profile-icon {
+    cursor: pointer;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 45px;
+    color:white
+
+}
+
+
+.profileNavigationIcon {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    padding-right: 2rem;
+    font-size: 25px;
+    color: white;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.content{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f3f3;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 18px;
+    width: 13rem;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 0.1rem;
+    gap: 0px;
+    flex-direction: column;
+    box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.sign-out {
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-out:hover {
+    background-color: #ddd;
+}
+
+.profileNavigation a:hover {background-color: #ddd;}
+
+
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+
+/* FOOTER */
+footer {
+    background-color: #CCCCCC;
+    z-index: -1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+footer > div {
+    display: flex;
+    padding-bottom: 0;
+    gap: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.footer-signature {
+    padding-top: 0.5rem;
+    width: 45%;
+}   
+
+
+
+/* The link part */
+
+.support-company {
+    padding-right: 1rem;
+}
+
+.support-company td, .support-company th{
+    text-align: center;
+}
+
+.support-company td > a:link{
+    color: black;
+    background-color: transparent;
+}
+
+.support-company td > a:visited{
+    color: black;
+    background-color: transparent;
+}
+
+.support-company td > a:hover{
+    color: gray;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.support-company tr{
+    height: 33px;
+}
+
+
+
+
+/* The logo and by part */
+
+.logo-image-div {
+    grid-area: logo;
+}
+
+.logo-image-div > #logo-image {
+    width: 60px; 
+    padding-left: 20px; 
+}
+
+.by-company-text {
+    grid-area: byText; 
+    color: black; 
+}
+
+.signature {
+    display: grid;
+    grid-template-areas: 'logo byText';
+    grid-template-columns: 70px 260px;
+    place-items: center;
+    padding-top: 0;
+    margin-top: 0;
+    gap: 0;
+    position: relative;
+    top: -0.2rem;
+    right: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
