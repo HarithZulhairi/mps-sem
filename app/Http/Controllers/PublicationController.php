@@ -14,11 +14,38 @@ use Carbon\Carbon;
 
 class PublicationController extends Controller
 {
-    public function MyPublication()
+    // Updated MyPublication method
+    public function MyPublication(Request $request)
     {
         $userPlatinumID = auth()->user()->users->P_ID;
-        $publications = Publication::where('P_ID', $userPlatinumID)->paginate(10);
-        return view('manage_publication.PlatinumMyPublication', ['publications' => $publications]);
+        
+        // Start the query filtered by the logged-in user
+        $query = Publication::where('P_ID', $userPlatinumID);
+
+        // CR-4003: Search logic (restricted to Title only)
+        if ($request->filled('search')) {
+            $query->where('Pb_title', 'LIKE', '%' . $request->search . '%');
+        }
+
+        // CR-4003: Filter logic (Type)
+        if ($request->filled('type')) {
+            $query->where('Pb_type', $request->type);
+        }
+
+        // CR-4003: Filter logic (Belongs to / Ownership)
+        if ($request->filled('belongs')) {
+            $query->where('Pb_belongs', $request->belongs);
+        }
+
+        // Sorting logic for columns
+        $sort = $request->get('sort', 'created_at'); // Default sort
+        $order = $request->get('order', 'desc');    // Default order
+        $query->orderBy($sort, $order);
+
+        // Paginate results (10 per page)
+        $publications = $query->paginate(10);
+
+        return view('manage_publication.PlatinumMyPublication', compact('publications'));
     }
 
 
@@ -305,6 +332,7 @@ class PublicationController extends Controller
             'publicationEduInsts' => $publicationEduInsts 
         ]);
     }
+    
 
     public function viewMentor(Publication $publication)
     {

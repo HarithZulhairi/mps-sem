@@ -15,16 +15,75 @@ section {
     padding-bottom: 20px;
 }
 
+/* Container and Table styling */
 .container {
-    border: 1px solid grey;
-    background-color: #F9F9F9;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 15px;
     max-width: 1200px;
-    width: 100%;
-    padding: 20px 50px;
+}
+
+/* Filter Bar Styling */
+.filter-wrapper {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-group {
     display: flex;
-    flex-direction: column; /* Align items vertically */
-    margin: auto;
-    margin-bottom: 1rem;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-filter {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-reset {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Badges for Types */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.type-article { background: #e3f2fd; color: #1976d2; }
+.type-journal { background: #f3e5f5; color: #7b1fa2; }
+.type-book { background: #e8f5e9; color: #388e3c; }
+.type-conference-paper { background: #fff3e0; color: #f57c00; }
+
+/* Table Link Styling for Sorting */
+th a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    width: 100%;
 }
 
 th, td{
@@ -42,11 +101,13 @@ th, td{
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    width: 100px;
-    margin: 0px 7px;
+    width: 80px;
+    margin: 0px 6px;
     padding: 3px 0px;
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: none;
 }
 
 .action-button:hover {
@@ -54,27 +115,36 @@ th, td{
 }
 
 .view {
-    background-color: #04AA6D;
+    background-color: #d4f1e4;
+    color: #1a8754;
 }
 
 .edit {
-    background-color: #007bff; 
+    background-color: #c7dbf7;
+    color: #0d6efd;
 }
 
 .delete {
-    background-color: #c70000;
+    background-color: #fcdada;
+    color: #dc3545;
 }
 
 .view:hover {
-    background-color: #218c65;
+    background-color: #1a8754;
+    color: white;
+    transform: translateY(-3px);
 }
 
 .edit:hover {
-    background-color: #0056b3;
+    background-color: #0d6efd;
+    color: white;
+    transform: translateY(-3px);
 }
 
 .delete:hover {
-    background-color: #9f0000;
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-3px);
 }
 
 /* Align the buttons in a row */
@@ -88,6 +158,66 @@ th, td{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+Container for the icons
+.icon-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Base style for the icon button */
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* View (Green Theme) */
+.icon-btn.view {
+    background-color: #e6f7ef;
+    color: #1a8754;
+}
+.icon-btn.view:hover {
+    background-color: #1a8754;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Edit (Blue Theme) */
+.icon-btn.edit {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}
+.icon-btn.edit:hover {
+    background-color: #0d6efd;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Delete (Red Theme) */
+.icon-btn.delete {
+    background-color: #fdeaea;
+    color: #dc3545;
+}
+.icon-btn.delete:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Optional: Add a subtle shadow on hover */
+.icon-btn:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 

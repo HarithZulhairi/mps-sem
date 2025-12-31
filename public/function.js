@@ -140,10 +140,14 @@ function copyToClipboard(elementId) {
     });
 }
 
-function confirmDelete(publicationId) {
-    var result = confirm("Are you sure you want to delete this publication?");
-    if (result) {
-        document.getElementById('deleteForm_' + publicationId).submit();
-    }
-    return false; // Prevent the form from submitting automatically
+// function confirmDelete(publicationId) {
+//     var result = confirm("Are you sure you want to delete this publication?");
+//     if (result) {
+//         document.getElementById('deleteForm_' + publicationId).submit();
+//     }
+//     return false; // Prevent the form from submitting automatically
+// }
+
+function confirmDelete(id) {
+    return confirm("Are you sure you want to delete this publication?");
 }
