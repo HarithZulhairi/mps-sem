@@ -4,8 +4,9 @@
 <link href="{{asset('style_manage_publication/UploadPublication.css')}}" rel="stylesheet">
 
 <section>
-  <div class="titleText"><b>Add your research</b></div>
+  <div class="titleText"><b>Add Your Publication</b></div>
   <div class="required-asterisk"><b>* required</b></div>
+  
   <div style="text-align: center; color: red;">
     @if($errors->any())
         <ul>
@@ -15,10 +16,12 @@
         </ul>
     @endif
   </div>
+
   <div class="container">
     <form method="post" action="{{route('manage_publication.store')}}" enctype="multipart/form-data">
       @csrf
       @method('post')
+
       <div class="research-type">
         <label><b>Research Type: <span style="color: red">*</span></b></label>
         <br>
@@ -30,16 +33,6 @@
         </select>
       </div>
 
-      <br>
-
-      <div class="upload-paper">
-        <label for="Pb_file_input"><b>Add a file: <span style="color: red">*</span></b></label>
-        <br>
-        <input type="file" id="Pb_file_input" name="Pb_file" style="display: none;" onchange="updateFileName(this)">
-        <button type="button" class="upload-button" onclick="document.getElementById('Pb_file_input').click()">Upload</button>
-        <p id="file_name"></p> <!-- Display file name here -->
-      </div>
-      
       <br>
 
       <div class="publication-belongs">
@@ -76,7 +69,7 @@
               @endif
             </select>
           </div>
-          <button class="add-author-button" type="button" onclick="addAuthorField()">Add Another Author</button>
+          <button class="add-author-button" type="button" onclick="addAuthorField()">Co-authors</button>
       </div>
 
       <br>
@@ -116,58 +109,34 @@
 
       <br>
 
-      <!-- Journal-specific fields -->
       <div id="journalFields" style="display: none;">
         <div class="publication-journal">
           <label><b>Journal/Book name:</b> <span style="color: red">*</span></label>
           <br>
           <input type="text" name="Pb_journalName" placeholder="Enter journal name here" style="width:100%; padding: 6px 10px;">
         </div>
-        
         <br>
-
         <div class="publication-journal-content">
           <div class="journal-fields">
-            <div class="journal-volume">
-              <label><b>Volume:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_volume" placeholder="Enter a volume">
-            </div>
-            <div class="journal-issue">
-              <label><b>Issue:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_issue" placeholder="Enter an issue">
-            </div>
-            <div class="journal-page">
-              <label><b>Page:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_page" placeholder="Enter a page">
-            </div>
+            <div class="journal-volume"><label><b>Volume:</b> <span style="color: red">*</span></label><input type="text" name="Pb_volume" placeholder="Enter a volume"></div>
+            <div class="journal-issue"><label><b>Issue:</b> <span style="color: red">*</span></label><input type="text" name="Pb_issue" placeholder="Enter an issue"></div>
+            <div class="journal-page"><label><b>Page:</b> <span style="color: red">*</span></label><input type="text" name="Pb_page" placeholder="Enter a page"></div>
           </div>
         </div>
       </div>
 
-      <!-- Conference-specific fields -->
       <div id="conferenceFields" style="display: none;">
         <div class="publication-conference">
           <label><b>Conference name:</b> <span style="color: red">*</span></label>
           <br>
           <input type="text" name="Pb_conferenceName" placeholder="Enter conference name here" style="width:100%; padding: 6px 10px;">
         </div>
-        
         <br>
-
         <div class="publication-conference-content">
           <div class="conference-fields">
-            <div class="conference-volume">
-              <label><b>Volume:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_conf_volume" placeholder="Enter a volume">
-            </div>
-            <div class="conference-issue">
-              <label><b>Issue:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_conf_issue" placeholder="Enter an issue">
-            </div>
-            <div class="conference-location">
-              <label><b>Location:</b> <span style="color: red">*</span></label>
-              <input type="text" name="Pb_conf_location" placeholder="Enter location">
-            </div>
+            <div class="conference-volume"><label><b>Volume:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_volume" placeholder="Enter a volume"></div>
+            <div class="conference-issue"><label><b>Issue:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_issue" placeholder="Enter an issue"></div>
+            <div class="conference-location"><label><b>Location:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_location" placeholder="Enter location"></div>
           </div>
         </div>
       </div>
@@ -197,6 +166,16 @@
               @endforeach
           @endif
         </select>
+      </div>
+
+      <br>
+
+      <div class="upload-paper">
+        <label for="Pb_file_input"><b>Add a file: <span style="color: red">*</span> <i style="font-weight: normal; font-size: 0.9em;">(PDF only)</i></b></label>
+        <br>
+        <input type="file" id="Pb_file_input" name="Pb_file" accept="application/pdf" style="display: none;" onchange="updateFileName(this)">
+        <button type="button" class="upload-button" onclick="document.getElementById('Pb_file_input').click()">Upload</button>
+        <p id="file_name" style="font-style: italic; color: #555; margin-top: 5px;"></p> 
       </div>
 
       <br>

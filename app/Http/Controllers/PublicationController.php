@@ -55,6 +55,9 @@ class PublicationController extends Controller
             'Pb_existingDOI' => 'nullable|string|max:255',
             'Pb_refers' => 'required|exists:research_information,RI_title',
             'agreement' => 'accepted'
+        ], [
+            'Pb_file.mimes' => 'The publication must be a file of type: pdf.', // Custom message for CR-4002
+            'Pb_file.max' => 'The publication may not be greater than 10 MB.', // Custom message for CR-4002
         ]);
 
         // Handle file upload
@@ -162,6 +165,9 @@ class PublicationController extends Controller
             'Pb_conf_location' => 'nullable|string|max:255',
             'Pb_existingDOI' => 'nullable|string|max:255',
             'Pb_refers' => 'required|string|max:255'
+        ],[
+            'Pb_file.mimes' => 'The publication must be a file of type: pdf.', // Custom message for CR-4002
+            'Pb_file.max' => 'The publication may not be greater than 10 MB.', // Custom message for CR-4002
         ]);
 
         // Handle the Pb_authors field
