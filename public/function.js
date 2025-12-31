@@ -76,28 +76,14 @@ function toggleFields() {
     var type = document.getElementById('Pb_type').value;
     var journalFields = document.getElementById('journalFields');
     var conferenceFields = document.getElementById('conferenceFields');
-  
-    journalFields.style.display = 'none';
-    conferenceFields.style.display = 'none';
-  
-    if (type === 'Journal' || type === 'Book') {
-      journalFields.style.display = 'block';
-    } else if (type === 'Conference Paper') {
-      conferenceFields.style.display = 'block';
-    }
+    journalFields.style.display = (type === 'Journal' || type === 'Book') ? 'block' : 'none';
+    conferenceFields.style.display = (type === 'Conference Paper') ? 'block' : 'none';
 }
 
 function toggleAuthors() {
     const belongs = document.getElementById('Pb_belongs').value;
-    const authorsContainer = document.getElementById('authors-container');
     const authorsTextField = document.getElementById('Pb_authors-textField');
     const authorsOptions = document.getElementById('Pb_authors-options');
-
-    // Clear existing dynamically added fields
-    while (authorsContainer.children.length > 2) {
-        authorsContainer.removeChild(authorsContainer.lastChild);
-    }
-
     if (belongs === 'Expert') {
         authorsTextField.style.display = 'none';
         authorsOptions.style.display = 'block';
@@ -110,33 +96,31 @@ function toggleAuthors() {
 function addAuthorField() {
     const belongs = document.getElementById('Pb_belongs').value;
     const container = document.getElementById('authors-container');
-
     if (belongs === 'Expert') {
-        // Add a dropdown for selecting authors
         const select = document.createElement('select');
         select.name = 'Pb_authors[]';
-        select.style = 'width: 100%; padding: 6px; margin-top: 5px;';
+        select.style = 'width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px;';
         select.innerHTML = expertOptions;
         container.appendChild(select);
     } else {
-        // Add a text field for entering author names
         const input = document.createElement('input');
         input.type = 'text';
         input.name = 'Pb_authors[]';
         input.placeholder = 'Enter author name';
-        input.style = 'width:100%; padding: 6px 10px; margin-top: 5px;';
+        input.style = 'width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px;';
         container.appendChild(input);
     }
 }
 
-  
 function updateFileName(input) {
-    const fileName = input.files[0].name;
-    document.getElementById('file_name').textContent = fileName;
+    if (input.files && input.files[0]) {
+        document.getElementById('file_name').textContent = "Selected: " + input.files[0].name;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    toggleFields(); // Set the initial visibility of fields based on the selected type
+    toggleFields();
+    toggleAuthors();
 });
 
 function showCitationPopup() {

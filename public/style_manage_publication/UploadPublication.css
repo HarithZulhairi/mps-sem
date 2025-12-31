@@ -1,114 +1,153 @@
+/* Modern Redesign CSS */
 section {
-    position: relative;
-    min-height: 100px; /* Set a minimum height */
+    padding: 40px 20px;
+    background-color: #f4f7f6;
+    min-height: 100vh;
 }
 
 .titleText {
     text-align: center;
-    font-size: 30px;
-    padding-top: 1rem;
+    font-size: 32px;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .required-asterisk {
     text-align: center;
-    color: red; 
-    font-size: 15px;
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 30px;
 }
 
 .container {
-    border: 1px solid grey;
-    background-color: #F9F9F9;
-    max-width: 700px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
     width: 100%;
-    padding: 20px 50px;
-    display: flex;
-    flex-direction: column; /* Align items vertically */
+    padding: 40px;
     margin: auto;
-    margin-bottom: 1rem;
 }
 
-.upload-button {
-    font-weight: bold;
-    width: 110px; 
-    padding: 5px; 
-    background-color: black; 
-    color: white;
-    cursor: pointer;
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+input[type="text"], 
+input[type="date"], 
+select, 
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
-.upload-button:hover {
-    background-color: gray;
+input:focus, select:focus, textarea:focus {
+    border-color: #3498db;
+    outline: none;
 }
 
-.publication-journal-content .journal-fields,
-.publication-conference-content .conference-fields {
-    display: flex;
-    justify-content: space-between;
+/* Author Section Styling */
+#authors-container {
+    margin-bottom: 10px;
 }
-  
-.publication-journal-content .journal-volume,
-.publication-journal-content .journal-issue,
-.publication-journal-content .journal-page,
-.publication-conference-content .conference-volume,
-.publication-conference-content .conference-location,
-.publication-conference-content .conference-issue {
-    flex: 1;
-}
-  
-.publication-journal-content input[type="text"],
-.publication-conference-content input[type="text"] {
-    width: 85%;
-    padding: 6px 10px;
-}
-  
-.agreement-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.agreement-box input[type="checkbox"] {
-    width: 30px;
-    height: 19px;
-}
-
-.agreement-box label {
-    font-size: 14px;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-.submit-button, .edit-button {
-    display: flex;
-    justify-content: space-around;
-}
-
-.submit-button input[type="submit"]:hover, .edit-button input[type="submit"]:hover {
-    background-color: gray;
-}
-
-.submit-button input[type="submit"], .edit-button input[type="submit"]{
-    font-weight: bold;
-    width: 110px; 
-    padding: 5px; 
-    background-color: black; 
-    color: white;
-    border-radius: 30px;
-    cursor: pointer;
-} 
 
 .add-author-button {
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bolder;
+    background-color: #2ecc71;
     color: white;
-    background-color: black;
-    padding: 5px 15px;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
 .add-author-button:hover {
-    background-color: gray;
+    background-color: #27ae60;
+}
+
+/* Upload Button Styling */
+.upload-button {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.upload-button:hover {
+    background-color: #2c3e50;
+}
+
+#file_name {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-top: 8px;
+}
+
+/* Submit Button */
+.submit-container {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.submit-button-input {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.submit-button-input:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.agreement-box {
+    background: #fdf2f2;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.agreement-box input {
+    margin-top: 4px;
+}
+
+/* Journal/Conference Grid */
+.fields-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
 }

@@ -4,16 +4,18 @@
 <link href="{{asset('style_manage_publication/UploadPublication.css')}}" rel="stylesheet">
 
 <section>
-  <div class="titleText"><b>Add Your Publication</b></div>
+  <div class="titleText">
+    <b>Add Your Publication</b>
+    <p class="subtitle">Share your latest research with the academic community</p>
+  </div>
+  
   <div class="required-asterisk"><b>* required</b></div>
   
-  <div style="text-align: center; color: red;">
+  <div style="text-align: center; color: #e74c3c; margin-bottom: 20px;">
     @if($errors->any())
-        <ul>
-            @foreach($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        </ul>
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
     @endif
   </div>
 
@@ -22,10 +24,9 @@
       @csrf
       @method('post')
 
-      <div class="research-type">
+      <div class="form-group">
         <label><b>Research Type: <span style="color: red">*</span></b></label>
-        <br>
-        <select id="Pb_type" name="Pb_type" style="width: 100%; padding: 6px;" onchange="toggleFields()">
+        <select id="Pb_type" name="Pb_type" onchange="toggleFields()">
           <option value="Article">Article</option>
           <option value="Journal">Journal</option>
           <option value="Book">Book</option>
@@ -33,33 +34,24 @@
         </select>
       </div>
 
-      <br>
-
-      <div class="publication-belongs">
+      <div class="form-group">
         <label><b>Is this publication belongs to expert? <span style="color: red">*</span></b></label>
-        <br>
-        <select id="Pb_belongs" name="Pb_belongs" style="width: 30%; padding: 6px;" onchange="toggleAuthors()">
+        <select id="Pb_belongs" name="Pb_belongs" style="width: auto;" onchange="toggleAuthors()">
           <option value="Myself">No, myself</option>
           <option value="Expert">Yes</option>
         </select>
       </div>
 
-      <br>
-
-      <div class="publication-title">
+      <div class="form-group">
         <label><b>Title: <span style="color: red">*</span></b></label>
-        <br>
-        <input type="text" name="Pb_title" placeholder="Enter your title here" style="width:100%; padding: 6px 10px;">
+        <input type="text" name="Pb_title" placeholder="Enter your publication title">
       </div>
 
-      <br>
-
-      <div class="publication-authors">
+      <div class="form-group">
           <label><b>Authors: <span style="color: red">*</span></b></label>
-          <br>
           <div id="authors-container">
-            <input id="Pb_authors-textField" name="Pb_authors[]" type="text" placeholder="Enter author name" style="width:100%; padding: 6px 10px;">
-            <select id="Pb_authors-options" name="Pb_authors[]" style="width: 100%; padding: 6px; display: none;">
+            <input id="Pb_authors-textField" name="Pb_authors[]" type="text" placeholder="Enter author name">
+            <select id="Pb_authors-options" name="Pb_authors[]" style="display: none;">
               @if($experts->isEmpty())
                   <option value="">Select expert</option>
               @else
@@ -69,97 +61,66 @@
               @endif
             </select>
           </div>
-          <button class="add-author-button" type="button" onclick="addAuthorField()">Co-authors</button>
+          <button class="add-author-button" type="button" onclick="addAuthorField()">+ Co-authors</button>
       </div>
 
-      <br>
-
-      <div class="publication-date">
+      <div class="form-group">
         <label><b>Date of Publication: <span style="color: red">*</span></b></label>
-        <br>
-        <input type="date" name="Pb_date" style="width:100%; padding: 6px 10px;">
+        <input type="date" name="Pb_date">
       </div>
 
-      <br>
-
-      <div class="publication-doi">
+      <div class="form-group">
         <label><b>DOI:</b></label>
-        <br>
-        <input type="text" name="Pb_DOI" placeholder="Enter DOI" style="width:100%; padding: 6px 10px;">
+        <input type="text" name="Pb_DOI" placeholder="e.g. 10.1000/xyz123">
       </div>
 
-      <br>
-
-      <div class="publication-abstract">
+      <div class="form-group">
         <label><b>Abstract:</b></label>
-        <br>
-        <textarea name="Pb_abstract" placeholder="Explain what is your article about" style="width:100%; padding: 6px 10px; height: 140px;"></textarea>
+        <textarea name="Pb_abstract" placeholder="Briefly explain your research..."></textarea>
       </div>
 
-      <br>
-
-      <div class="publication-peer">
+      <div class="form-group">
           <label><b>Has this been peer reviewed?</b></label>
-          <br>
-          <select id="Pb_peer" name="Pb_peer" style="width: 20%; padding: 6px;">
+          <select id="Pb_peer" name="Pb_peer" style="width: auto;">
             <option value="0">No</option>
             <option value="1">Yes</option>
           </select>
       </div>
 
-      <br>
-
-      <div id="journalFields" style="display: none;">
-        <div class="publication-journal">
+      <div id="journalFields" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <div class="form-group">
           <label><b>Journal/Book name:</b> <span style="color: red">*</span></label>
-          <br>
-          <input type="text" name="Pb_journalName" placeholder="Enter journal name here" style="width:100%; padding: 6px 10px;">
+          <input type="text" name="Pb_journalName" placeholder="Enter journal name">
         </div>
-        <br>
-        <div class="publication-journal-content">
-          <div class="journal-fields">
-            <div class="journal-volume"><label><b>Volume:</b> <span style="color: red">*</span></label><input type="text" name="Pb_volume" placeholder="Enter a volume"></div>
-            <div class="journal-issue"><label><b>Issue:</b> <span style="color: red">*</span></label><input type="text" name="Pb_issue" placeholder="Enter an issue"></div>
-            <div class="journal-page"><label><b>Page:</b> <span style="color: red">*</span></label><input type="text" name="Pb_page" placeholder="Enter a page"></div>
-          </div>
+        <div class="fields-grid">
+            <div><label><b>Volume:</b></label><input type="text" name="Pb_volume"></div>
+            <div><label><b>Issue:</b></label><input type="text" name="Pb_issue"></div>
+            <div><label><b>Page:</b></label><input type="text" name="Pb_page"></div>
         </div>
       </div>
 
-      <div id="conferenceFields" style="display: none;">
-        <div class="publication-conference">
+      <div id="conferenceFields" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <div class="form-group">
           <label><b>Conference name:</b> <span style="color: red">*</span></label>
-          <br>
-          <input type="text" name="Pb_conferenceName" placeholder="Enter conference name here" style="width:100%; padding: 6px 10px;">
+          <input type="text" name="Pb_conferenceName" placeholder="Enter conference name">
         </div>
-        <br>
-        <div class="publication-conference-content">
-          <div class="conference-fields">
-            <div class="conference-volume"><label><b>Volume:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_volume" placeholder="Enter a volume"></div>
-            <div class="conference-issue"><label><b>Issue:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_issue" placeholder="Enter an issue"></div>
-            <div class="conference-location"><label><b>Location:</b> <span style="color: red">*</span></label><input type="text" name="Pb_conf_location" placeholder="Enter location"></div>
-          </div>
+        <div class="fields-grid">
+            <div><label><b>Volume:</b></label><input type="text" name="Pb_conf_volume"></div>
+            <div><label><b>Issue:</b></label><input type="text" name="Pb_conf_issue"></div>
+            <div><label><b>Location:</b></label><input type="text" name="Pb_conf_location"></div>
         </div>
       </div>
 
-      <br>
-
-      <div class="publication-existing-doi">
+      <div class="form-group">
         <label><b>Existing DOI:</b></label>
-        <br>
-        <input type="text" name="Pb_existingDOI" placeholder="Enter existing DOI" style="width:100%; padding: 6px 10px;">
+        <input type="text" name="Pb_existingDOI" placeholder="Enter existing DOI if applicable">
       </div>
 
-      <br>
-
-      <div class="publication-refers">
-        <label style="margin-bottom: 0;">
-          <b>Which publication refers to? <span style="color: red">*</span></b>
-          <br>
-          <p>Select your project research:</p>
-        </label>
-        <select id="Pb_refers" name="Pb_refers" style="width: 100%; padding: 6px;">
+      <div class="form-group">
+        <label><b>Which publication refers to? <span style="color: red">*</span></b></label>
+        <select id="Pb_refers" name="Pb_refers">
           @if($researches->isEmpty())
-              <option value="">No research</option>
+              <option value="">No research projects found</option>
           @else
               @foreach($researches as $research)
                   <option value="{{ $research->RI_title }}">{{ $research->RI_title }}</option>
@@ -168,27 +129,20 @@
         </select>
       </div>
 
-      <br>
-
-      <div class="upload-paper">
-        <label for="Pb_file_input"><b>Add a file: <span style="color: red">*</span> <i style="font-weight: normal; font-size: 0.9em;">(PDF only)</i></b></label>
-        <br>
+      <div class="form-group">
+        <label for="Pb_file_input"><b>Add a file: <span style="color: red">*</span> <small>(PDF only)</small></b></label>
         <input type="file" id="Pb_file_input" name="Pb_file" accept="application/pdf" style="display: none;" onchange="updateFileName(this)">
-        <button type="button" class="upload-button" onclick="document.getElementById('Pb_file_input').click()">Upload</button>
-        <p id="file_name" style="font-style: italic; color: #555; margin-top: 5px;"></p> 
+        <button type="button" class="upload-button" onclick="document.getElementById('Pb_file_input').click()">📁 Choose File</button>
+        <p id="file_name"></p> 
       </div>
-
-      <br>
 
       <div class="agreement-box">
           <input type="checkbox" id="agreement" name="agreement" value="1">
-          <label for="agreement" style="margin-bottom: 0;">I have reviewed and verified each file I am uploading. I have the right to share each file publicly, and agree to the Upload Conditions <span style="color: red">*</span></label>
+          <label for="agreement">I have reviewed and verified each file I am uploading. I have the right to share each file publicly, and agree to the Upload Conditions <span style="color: red">*</span></label>
       </div>
 
-      <br>
-
-      <div class="submit-button">
-        <input type="submit" value="Submit">
+      <div class="submit-container">
+        <input type="submit" class="submit-button-input" value="Submit Publication">
       </div>
 
     </form>
