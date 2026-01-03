@@ -41,12 +41,22 @@
         <div onclick="openSideDropdown()" class="side-dropbtn">&#9776;</div>
         <div id="sideDropdown" class="side-dropdown-content">
             <a style="text-decoration: none;"><i class="fa fa-home fa-2x" aria-hidden="true"></i><br>Home</a>
+            
             <div class="drop-wrapper">
                 <a class="btna" data-target="#droprightPlatinum"><i class="fa fa-id-card-o fa-2x"></i><br>Platinum Information</a>
                 <div class="drop-menu droprightPlatinum" id="droprightPlatinum">
                     <a href="{{ route('manage_profile.PlatinumList') }}">List of Platinum</a>
                 </div>
             </div>
+            
+            <div class="drop-wrapper">
+                <a class="btna" data-target="#droprightResearch"><i class="fa-solid fa-book-open fa-2x"></i><br>Research Management</a>
+                <div class="drop-menu droprightResearch" id="droprightResearch">
+                    <a href="{{ route('manage_research.PlatinumresearchInfo') }}">View Research Information</a>
+                    <a href="{{ url('platinum/research/addResearch') }}">Add Research Information</a>
+                </div>
+            </div>
+            
             <div class="drop-wrapper">
                 <a class="btna" data-target="#droprightPublication"><i class="fa-solid fa-newspaper fa-2x"></i><br>Publication</a>
                 <div class="drop-menu droprightPublication" id="droprightPublication">
@@ -55,6 +65,7 @@
                     <a href="{{ route('manage_publication.PlatinumSearchPublication') }}">Search publication</a>
                 </div>
             </div>
+
             <div class="drop-wrapper">
                 <a class="btna" data-target="#droprightExpert"><i class="fas fa-prescription-bottle fa-2x"></i><br>Expert</a>
                 <div class="drop-menu droprightExpert" id="droprightExpert">
@@ -63,6 +74,7 @@
                     <a href="{{ route('manage_expertdomain.MyExpertList') }}">My Expert List</a>
                 </div>
             </div>
+            
             <a style="text-decoration: none;"><i class="fa fa-phone fa-2x" aria-hidden="true"></i><br>Contact Us</a>
         </div>
     </div>
@@ -81,14 +93,7 @@
             @else
                 <a class="content" type="button">MY PROFILE</a>
             @endif
-                <div class="drop-wrapper">
-                    <a class="content" data-target="#dropleftResearch">RESEARCH INFORMATION</a>
-                    <div class="drop-menu dropleftResearch" id="dropleftResearch">
-                        <a href="{{ route('manage_research.PlatinumresearchInfo') }}">View Research Information</a>
-                        <a href="{{url('platinum/research/addResearch')}}">Add Research Information</a>
-                </div>
-            </div>
-                <!-- <a class="content" type="button">SIGN OUT</a> -->
+                            <!-- <a class="content" type="button">SIGN OUT</a> -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="content sign-out">SIGN OUT</button>
