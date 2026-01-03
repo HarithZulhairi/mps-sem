@@ -7,15 +7,18 @@ use App\Models\ExpertDomain;
 
 class ExpertController extends Controller
 {
-    public function FindExpert(){
+    public function FindExpert()
+    {
         return view('manage_expertdomain.FindExpert');
     }
 
-    public function UploadExpert(){
+    public function UploadExpert()
+    {
         return view('manage_expertdomain.UploadExpert');
     }
 
-    public function saveExpert(Request $request){
+    public function saveExpert(Request $request)
+    {
 
         $userPlatinumID = auth()->user()->users->P_ID;
 
@@ -46,6 +49,7 @@ class ExpertController extends Controller
             'E_Pages' => 'required|array',
             'E_Publisher' => 'required|array',
             'E_Link' => 'required|array',
+            'E_PublicationResearch' => 'nullable|array',
         ]);
 
         if ($request->hasFile('E_Photo')) {
@@ -89,11 +93,13 @@ class ExpertController extends Controller
         return redirect()->route('manage_expertdomain.MyExpertList')->with('success', 'Expert uploaded successfully.');
     }
 
-    public function view(ExpertDomain $expertdomain){
+    public function view(ExpertDomain $expertdomain)
+    {
         return view('manage_expertdomain.ViewExpert', ['expertdomain' => $expertdomain]);
     }
 
-    public function viewPublication($expertdomain, $publicationTitle){
+    public function viewPublication($expertdomain, $publicationTitle)
+    {
         $expertdomain = ExpertDomain::find($expertdomain);
         $publicationTitles = json_decode($expertdomain->E_PublicationTitle, true);
         $publication = array_search($publicationTitle, $publicationTitles);
@@ -101,7 +107,8 @@ class ExpertController extends Controller
         return view('manage_expertdomain.ViewPublication', ['expertdomain' => $expertdomain, 'publication' => $publication]);
     }
 
-    public function edit(ExpertDomain $expertdomain){
+    public function edit(ExpertDomain $expertdomain)
+    {
         return view('manage_expertdomain.EditExpert', ['expertdomain' => $expertdomain]);
     }
 
@@ -175,6 +182,8 @@ class ExpertController extends Controller
                 'E_Pages' => 'nullable|array',
                 'E_Publisher' => 'nullable|array',
                 'E_Link' => 'required|array',
+                'E_PublicationResearch' => 'nullable|array',
+
             ]);
 
             $expertdomain->update([
@@ -186,19 +195,23 @@ class ExpertController extends Controller
                 'E_Pages' => json_encode($data['E_Pages']),
                 'E_Publisher' => json_encode($data['E_Publisher']),
                 'E_Link' => json_encode($data['E_Link']),
-        ]);
+                'E_PublicationResearch' => json_encode($data['E_PublicationResearch'] ?? []),
+            ]);
+
         }
 
         return redirect()->route('manage_expertdomain.MyExpertList')->with('success', 'Expert updated successfully.');
     }
 
-    public function MyExpertList(){
+    public function MyExpertList()
+    {
         $userPlatinumID = auth()->user()->users->P_ID;
         $expertdomain = ExpertDomain::where('P_ID', $userPlatinumID)->paginate(10);
         return view('manage_expertdomain.MyExpertList', ['expertdomain' => $expertdomain]);
     }
 
-    public function find(Request $request){
+    public function find(Request $request)
+    {
 
         $query = $request->input('q');
         $type = $request->input('type');
@@ -227,16 +240,19 @@ class ExpertController extends Controller
         return view('manage_expertdomain.FindExpert', ['expertdomain' => $expertdomain]);
     }
 
-    public function delete(ExpertDomain $expertdomain){
+    public function delete(ExpertDomain $expertdomain)
+    {
         $expertdomain->delete();
         return redirect()->route('manage_expertdomain.MyExpertList')->with('success', 'Expert deleted successfully.');
     }
 
-    public function SearchExpert(){
+    public function SearchExpert()
+    {
         return view('manage_expertdomain.MentorFindExpert');
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
         $query = $request->input('q');
         $type = $request->input('type');
@@ -265,11 +281,13 @@ class ExpertController extends Controller
         return view('manage_expertdomain.MentorFindExpert', ['expertdomain' => $expertdomain]);
     }
 
-    public function MentorViewExpert(ExpertDomain $expertdomain){
+    public function MentorViewExpert(ExpertDomain $expertdomain)
+    {
         return view('manage_expertdomain.MentorViewExpert', ['expertdomain' => $expertdomain]);
     }
 
-    public function MentorViewPublication($expertdomain, $publicationTitle){
+    public function MentorViewPublication($expertdomain, $publicationTitle)
+    {
         $expertdomain = ExpertDomain::find($expertdomain);
         $publicationTitles = json_decode($expertdomain->E_PublicationTitle, true);
         $publication = array_search($publicationTitle, $publicationTitles);
