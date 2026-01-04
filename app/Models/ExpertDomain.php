@@ -40,7 +40,8 @@ class ExpertDomain extends Model
         'E_Volume',
         'E_Pages',
         'E_Publisher',
-        'E_Link'
+        'E_Link',
+        'E_PublicationResearch'
     ];
 
     protected $casts = [
@@ -61,7 +62,8 @@ class ExpertDomain extends Model
         'E_Volume' => 'array',
         'E_Pages' => 'array',
         'E_Publisher' => 'array',
-        'E_Link' => 'array'
+        'E_Link' => 'array',
+        'E_PublicationResearch' => 'array'
     ];
 
     public function getEQualificationAttribute($value)
@@ -150,6 +152,11 @@ class ExpertDomain extends Model
     }
 
     public function getELinkAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getEPublicationResearchAttribute($value)
     {
         return json_decode($value);
     }

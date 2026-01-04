@@ -133,27 +133,27 @@ main {
 }
 
 .droprightPlatinum{
-    left: 71.9%;
-    top: 24%;
+    left: 72%;
+    top: 20%;
     margin-left: 0.125rem;
 }
 
 .droprightPublication{
-    left: 71.9%;
-    top: 34%;
+    left: 72%;
+    top: 45%;
     margin-left: 0.125rem;
 }
 
 .droprightExpert{
-    left: 71.9%;
-    top: 53%;
+    left: 72%;
+    top: 60%;
     margin-left: 0.125rem;
 }
 
-.dropleftResearch{
-    right: 100%;
-    top: 0%;
-    margin-right: 0.125rem;
+.droprightResearch{
+    left: 72%;
+    top: 30%;
+    margin-left: 0.125rem;
 }
 
 

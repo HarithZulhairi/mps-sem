@@ -40,6 +40,7 @@ return new class extends Migration
             $table->json('E_Pages')->nullable();
             $table->json('E_Publisher')->nullable();
             $table->json('E_Link')->nullable();
+            $table->json('E_PublicationResearch')->nullable();
             $table->timestamps();
         });
     }
