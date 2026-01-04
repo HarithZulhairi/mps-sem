@@ -64,7 +64,7 @@
             {{ Session::get('success') }}
         </div>
         @endif
-        <form method="post" action="{{ route('profile.mentor.update') }}">
+<form method="post" action="{{ route('profile.mentor.update') }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ $mentor->user_id }}">
             <div class="form-group">
@@ -91,6 +91,13 @@
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="M_address" class="form-control" value="{{ $mentor->M_address }}">
             </div>
+
+            <div class="form-group">
+                <label for="picture">Profile Picture:</label>
+                <input type="file" id="picture" name="M_Picture" class="form-control">
+            </div>
+
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Update Profile</button>
                 <a href="{{ url('/dashboard-mentor') }}" class="btn btn-danger">Back</a>

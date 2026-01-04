@@ -139,7 +139,11 @@
             </div>
             <div class="form-group">
                 <label for="email">Email: <span style="color: red;">*</span></label>
-                <input type="text" id="email" name="P_Email" placeholder="Enter Platinum Email" required>
+<input type="email" id="email" name="P_Email"
+       placeholder="Enter Platinum Email"
+       required
+       oninvalid="this.setCustomValidity('Please enter a valid email format')"
+       oninput="this.setCustomValidity('')">
             </div>
             <div class="form-group">
                 <label for="fb">Facebook Name: <span style="color: red;">*</span></label>
@@ -192,10 +196,7 @@
                 <label for="date">Date of Application: <span style="color: red;">*</span></label>
                 <input type="date" id="date" name="P_DOApp" placeholder="Choose Date" required>
             </div>
-            <div class="form-group">
-                <label for="picture">Personal Picture: <span style="color: red;">*</span></label>
-                <input type="file" id="picture" name="P_Picture" required>
-            </div>
+          
             <div class="form-group">
                 <button type="submit">Register</button>
             </div>

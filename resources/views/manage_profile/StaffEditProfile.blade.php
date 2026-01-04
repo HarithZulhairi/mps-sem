@@ -64,7 +64,7 @@
             {{ Session::get('success') }}
         </div>
         @endif
-        <form method="post" action="{{ route('profile.staff.update') }}">
+            <form method="post" action="{{ route('profile.staff.update') }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ $staff->user_id }}">
             <div class="form-group">
@@ -91,6 +91,12 @@
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="S_address" class="form-control" value="{{ $staff->S_address }}">
             </div>
+
+            <div class="form-group">
+                <label for="picture">Profile Picture:</label>
+                <input type="file" id="picture" name="S_Picture" class="form-control">
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Update Profile</button>
                 <a href="{{ url('/dashboard-staff') }}" class="btn btn-danger">Back</a>

@@ -42,7 +42,7 @@ class UsersController extends Controller
             'P_Citizenship' => 'required',
             'P_Address' => 'required',
             'P_PhoneNum' => 'required',
-            'P_Email' => 'required',
+            'P_Email' => 'required|email|unique:users,email',
             'P_FBName' => 'required',
             'P_EduLevel' => 'required',
             'P_EduField' => 'required',
@@ -54,7 +54,7 @@ class UsersController extends Controller
             'P_RefName' => 'required',
             'P_RefBatch' => 'required',
             'P_DOApp' => 'required',
-            'P_Picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:24028'
+            'P_Picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:24028'
         ]);
     
         $name = $request->P_Name;
@@ -77,15 +77,27 @@ class UsersController extends Controller
         $refname = $request->P_RefName;
         $refbatch = $request->P_RefBatch;
         $date = $request->P_DOApp;
+
+        $platinum = new Platinum();
+
     
         if ($request->hasFile('P_Picture')) {
             $picture = $request->file('P_Picture');
             $pictureName = time() . '.' . $picture->getClientOriginalExtension();
             $picture->move(public_path('uploads'), $pictureName);
+            $platinum->P_Picture = $pictureName;
+        } else {
+            $platinum->P_Picture = 'default_profile_pic.jpg'; // ← placeholder image in /public/uploads
         }
-    
+
         $last6digit = substr($request->P_IC, -6); //  6 digit last ic
         $password = Hash::make($last6digit); 
+
+        // Email Checking
+        if(User::where('email', $request->P_Email)->exists()) {
+            return redirect()->back()->with('error','Email already exists!');
+        }
+
     
         $newuser = new User();
         $newuser->name = $request->P_Name;
@@ -97,7 +109,6 @@ class UsersController extends Controller
     
             $user_id = $newuser->id;
     
-            $platinum = new Platinum();
             $platinum->P_Name = $name;
             $platinum->user_id = $user_id;
             $platinum->P_IC = $ic;
@@ -119,7 +130,11 @@ class UsersController extends Controller
             $platinum->P_RefName = $refname;
             $platinum->P_RefBatch = $refbatch;
             $platinum->P_DOApp = $date;
-            $platinum->P_Picture = $pictureName;
+
+            if ($request->hasFile('P_Picture')) {
+                $platinum->P_Picture = $pictureName;
+            }
+
             $platinum->save();
     
             return redirect()->back()->with('success','Platinum added successfully');
@@ -362,24 +377,49 @@ class UsersController extends Controller
         return view('manage_profile.MentorEditProfile', compact('mentor'));
     }
 
-    public function updateMentorProfile(Request $request)
-    {
-        $mentor = Mentor::where('user_id', $request->user_id)->first();
+   public function updateMentorProfile(Request $request)
+{
+    $mentor = Mentor::where('user_id', $request->user_id)->first();
 
-        if (!$mentor) {
-            return redirect()->back()->withErrors('Mentor not found.');
-        }
-
-        $mentor->M_name = $request->M_name;
-        $mentor->M_IC = $request->M_IC;
-        $mentor->M_gender = $request->M_gender;
-        $mentor->M_address = $request->M_address;
-        $mentor->M_phoneNum = $request->M_phoneNum;
-        $mentor->M_email = $request->M_email;
-        $mentor->save();
-
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+    if (!$mentor) {
+        return redirect()->back()->withErrors('Mentor not found.');
     }
+
+    // Optional: Add validation
+    $request->validate([
+        'M_name' => 'required|string|max:255',
+        'M_IC' => 'required|string|max:255',
+        'M_gender' => 'required|string|max:255',
+        'M_address' => 'required|string|max:255',
+        'M_phoneNum' => 'required|string|max:20',
+        'M_email' => 'required|email|max:255',
+        'M_Picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:24028'
+    ]);
+
+    // Update fields
+    $mentor->M_name = $request->M_name;
+    $mentor->M_IC = $request->M_IC;
+    $mentor->M_gender = $request->M_gender;
+    $mentor->M_address = $request->M_address;
+    $mentor->M_phoneNum = $request->M_phoneNum;
+    $mentor->M_email = $request->M_email;
+
+    // Upload profile picture if provided
+    if ($request->hasFile('M_Picture')) {
+        $picture = $request->file('M_Picture');
+        $pictureName = time() . '_' . $picture->getClientOriginalName();
+        $picture->move(public_path('uploads'), $pictureName);
+        $mentor->M_Picture = $pictureName;
+    }
+
+    $mentor->save();
+
+    // Redirect back to MentorViewProfile
+    return redirect()
+        ->route('profile.mentor.view', ['id' => $mentor->user_id])
+        ->with('success', 'Profile updated successfully.');
+}
+
 
     public function showStaffProfile($id)
     {
@@ -403,24 +443,41 @@ class UsersController extends Controller
         return view('manage_profile.StaffEditProfile', compact('staff'));
     }
 
-    public function updateStaffProfile(Request $request)
-    {
-        $staff = Staff::where('user_id', $request->user_id)->first();
+   public function updateStaffProfile(Request $request)
+{
+    $staff = Staff::where('user_id', $request->user_id)->first();
 
-        if (!$staff) {
-            return redirect()->back()->withErrors('Staff not found.');
-        }
-
-        $staff->S_name = $request->S_name;
-        $staff->S_IC = $request->S_IC;
-        $staff->S_gender = $request->S_gender;
-        $staff->S_address = $request->S_address;
-        $staff->S_phoneNum = $request->S_phoneNum;
-        $staff->S_email = $request->S_email;
-        $staff->save();
-
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+    if (!$staff) {
+        return redirect()->back()->withErrors('Staff not found.');
     }
+
+    $request->validate([
+        'S_Picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:24028',
+    ]);
+
+    // Update normal fields
+    $staff->S_name = $request->S_name;
+    $staff->S_IC = $request->S_IC;
+    $staff->S_gender = $request->S_gender;
+    $staff->S_address = $request->S_address;
+    $staff->S_phoneNum = $request->S_phoneNum;
+    $staff->S_email = $request->S_email;
+
+    // Upload profile picture if exists
+    if ($request->hasFile('S_Picture')) {
+        $picture = $request->file('S_Picture');
+        $pictureName = time() . '_' . $picture->getClientOriginalName();
+        $picture->move(public_path('uploads'), $pictureName);
+        $staff->S_Picture = $pictureName;
+    }
+
+    $staff->save();
+
+return redirect()
+    ->route('profile.staff.view', ['id' => $staff->user_id])
+    ->with('success', 'Profile updated successfully.');
+}
+
 
     public function MentorviewStaff($id)
     {

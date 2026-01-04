@@ -49,6 +49,12 @@
 <div class="form-container">
     <div class="form-title">MY PROFILE</div>
     <div class="form-content">
+
+    <div class="profile-picture">
+        <img src="{{ asset('uploads/' . ($mentor->M_Picture ?? 'default_profile_pic.jpg')) }}">
+    </div>
+
+
         @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}

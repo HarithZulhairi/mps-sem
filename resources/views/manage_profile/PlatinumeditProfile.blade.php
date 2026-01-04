@@ -81,7 +81,7 @@
             {{Session::get('success')}}
         </div>
         @endif
-        <form method="post" action="{{ route('manage_profile.PlatinumupdateProfile', ['id' => $register->P_ID]) }}">
+<form method="post" action="{{ route('manage_profile.PlatinumupdateProfile', ['id' => $register->P_ID]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -186,6 +186,13 @@
                 <label for="date">Date of Application: <span style="color: red;">*</span></label>
                 <input type="date" id="date" name="P_DOApp" class="form-control" value="{{ $register->P_DOApp }}" required>
             </div>
+
+              <div class="form-group">
+                <label for="picture">Profile Picture:</label>
+                <input type="file" id="picture" name="P_Picture" class="form-control">
+            </div>
+
+
             <span>
                 <a href ="{{ route('manage_profile.PlatinumViewProfile', ['id' => $register->P_ID]) }}" class="btn btn-danger">Back</a>
                 <button type="submit" class="btn btn-primary float-right">Update</button>
